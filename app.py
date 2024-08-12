@@ -54,14 +54,14 @@ with col4:
 col1, col2 = st.columns(2)
 
 with col1:
-    enter_price = st.number_input('Entered Position Stock Price', min_value=0, value=100, step=0.01)
-    strike_price = st.number_input('Strike Price', min_value=0, value=100, step=0.01)
+    enter_price = st.number_input('Entered Position Stock Price', min_value=0.00, value=100.00, step=0.01)
+    strike_price = st.number_input('Strike Price', min_value=0.00, value=100.00, step=0.01)
     yr_out = datetime.datetime.now() + datetime.timedelta(days=7)
     expiration_date = st.date_input("Expiration Date", value=(yr_out))
 
 with col2:
-    premium = st.number_input('Option Premium', min_value=0, value=5, step=0.01)
-    shares = st.number_input('Number of Contracts', min_value=1, value=1, step=0.01)
+    premium = st.number_input('Option Premium', min_value=0.00, value=5.00, step=0.01)
+    shares = st.number_input('Number of Contracts', min_value=1, value=1, step=1)
 
 d = str(expiration_date)
 print(d)
