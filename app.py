@@ -61,7 +61,7 @@ with col1:
 
 with col2:
     premium = st.number_input('Option Premium', min_value=0.00, value=5.00, step=0.01)
-    shares = st.number_input('Number of Contracts', min_value=1, value=1, step=1)
+    contracts = st.number_input('Number of Contracts', min_value=1, value=1, step=1)
 
 d = str(expiration_date)
 print(d)
@@ -69,21 +69,26 @@ days_to_exp = datetime.datetime(int(d[:4]),int(d[5:7]),int(d[8:10])) - datetime.
 print(days_to_exp)
 yield_to_expiration=0
 annualized_yield=0
-
+max_profit = 0
 if strategy == "Covered Call":
     yield_to_expiration = round((premium * 100) / enter_price, 2)
     annualized_yield = round((yield_to_expiration / days_to_exp.days) * 365, 2)  
+    max_profit = ((strike_price - enter_price) + premium)*100*contracts
+    max_profit = round(max_profit, 2)
 else:
     yield_to_expiration = round((premium * 100) / strike_price, 2)
     annualized_yield = round((yield_to_expiration / days_to_exp.days) * 365, 2)
+    max_profit = ((enter_price - strike_price) + premium)*100*contracts
+    max_profit = round(max_profit, 2)
 
-col5, col6 = st.columns(2)
+col5, col6, col7 = st.columns(3)
 
 with col5:
     st.metric("Yield to Expiration", f"{yield_to_expiration}%")
 with col6:
     st.metric("Annualized Yield", f"{annualized_yield}%")
-
+with col7:
+    st.metric("Max Profit", f"${max_profit}")
 
 
 # fig, ax = plt.subplots(figsize=(10, 6))
