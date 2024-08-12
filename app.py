@@ -60,7 +60,7 @@ with col1:
     expiration_date = st.date_input("Expiration Date", value=(yr_out))
 
 with col2:
-    premium = st.number_input('Option Premium', min_value=5, value=5)
+    premium = st.number_input('Option Premium', min_value=0, value=5)
     shares = st.number_input('Number of Contracts', min_value=1, value=1)
 
 d = str(expiration_date)
