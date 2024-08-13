@@ -85,10 +85,28 @@ col5, col6, col7 = st.columns(3)
 
 with col5:
     st.metric("Yield to Expiration", f"{yield_to_expiration}%")
+    st.write(f"{days_to_exp.days} days or {round((days_to_exp.days/30),2)} months to expiration")
+    st.write("YTE = Premium / Stock Enter Price")
+    st.write(f"YTE = {premium} / {enter_price}")
 with col6:
-    st.metric("Annualized Yield", f"{annualized_yield}%")
+    st.metric("Annualized Yield (Standardized)", f"{annualized_yield}%")
+    st.write(" \n")
+    st.write(" \n")
+    st.write(" \n")
+    st.write(" \n")
+    st.write("AY = (YTE / duration in days) * 365")
+    st.write(" \n")
+    st.write(" \n")
+    st.write(f"AY = ({round(yield_to_expiration,2)} / {days_to_exp.days}) * 365")
 with col7:
-    st.metric("Max Profit", f"${max_profit}")
+    st.metric("Max Profit (Selling stock + premium)", f"${max_profit}")
+    st.write(" \n")
+    st.write(" \n")
+    st.write(" \n")
+    st.write(" \n")
+    st.write("MP = #contracts * (100*(Strike - Enter Price) + Premium)")
+    st.write(f"MP = {contracts} * (100 * ({strike_price} - {enter_price}) + {premium})")
+    
 
 
 # fig, ax = plt.subplots(figsize=(10, 6))
